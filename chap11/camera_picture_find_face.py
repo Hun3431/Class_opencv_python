@@ -88,7 +88,7 @@ elif int(num) == 2:
     print("2. 카메라에서 얼굴 찾기")
     title = "View Frame from Camera"
 
-    capture = cv2.VideoCapture(0)  # 0번 카메라 연결
+    capture = cv2.VideoCapture(1)  # 0번 카메라 연결
     if capture.isOpened() == False:  # 카메라 연결 안된 경우 예외처리
         raise Exception("카메라 연결 안됨")
 
