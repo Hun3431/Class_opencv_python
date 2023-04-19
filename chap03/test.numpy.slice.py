@@ -22,5 +22,12 @@ print(b[0:2], b[0:2].shape)        # 2차원
 print(b[1, 0:2], b[1, 0:2].shape)  # 1차원
 print(b[1, 0], b[1, 0].shape)      # scalar
 
+# [,]와 [][] 슬라이싱 차이
+print("[,] != [][]]")
 print(b[1:2, 1:2], b[1:2, 1:2].shape)
+print(b[1:2][1:2], b[1:2][1:2].shape)
+
+# 슬라이싱과 인덱싱 차원
+print("slice and index")
 print(b[1:3, 1:2], b[1:3, 1:2].shape)
+print(b[1:3, 1], b[1:3, 1].shape)
