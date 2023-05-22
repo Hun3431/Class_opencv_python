@@ -32,6 +32,13 @@ while True:
         cv2.putText(image, str(radius), text, cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 5)
         cv2.putText(image, str(radius), text, cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
 
+        if radius >= 50:
+            cv2.circle(image, center, radius, (255, 0, 0), 2)
+        elif radius > 40:
+            cv2.circle(image, center, radius, (0, 255, 0), 2)
+        elif radius > 32:
+            cv2.circle(image, center, radius, (255, 0, 255), 2)
+
     cv2.putText(image, (f'./images/coin/{imageNum:02d}.jpg'), (5, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
     cv2.putText(image, (f'Coin : {count}'), (5, 70), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
     cv2.imshow(f'Coin_{imageNum:02d}', image)
