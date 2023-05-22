@@ -47,7 +47,21 @@ index = eigen_value.argsort()[:: -1]
 eigen_value_sort = eigen_value[index]
 eigen_vector_sort = eigen_vector[:, index]
 
-print(eigen_value_sort)
-print(eigen_vector_sort)
+# print(eigen_value_sort)
+# print(eigen_vector_sort)
+
+sum = 0
+rate = 0.95
+select_index = 0
+
+sum_eigen_value = eigen_value_sort.sum() * rate
+for i in range(len(eigen_value_sort)):
+    sum += eigen_value_sort[i]
+
+    if sum_eigen_value <= sum:
+        select_index = i + 1
+        break;
+
+print(select_index)
 
 cv2.waitKey()
