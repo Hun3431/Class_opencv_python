@@ -40,7 +40,14 @@ covariance_array = np.cov(difference_array.T)
 
 eigen_value, eigen_vector = np.linalg.eig(covariance_array)
 
-print(eigen_value)
-print(eigen_vector)
+# print(eigen_value)
+# print(eigen_vector)
+
+index = eigen_value.argsort()[:: -1]
+eigen_value_sort = eigen_value[index]
+eigen_vector_sort = eigen_vector[:, index]
+
+print(eigen_value_sort)
+print(eigen_vector_sort)
 
 cv2.waitKey()
