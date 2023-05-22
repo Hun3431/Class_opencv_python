@@ -72,6 +72,14 @@ for i in range(select_index):
 
 transform_matrix = np.delete(transform_matrix, 0, axis=1)
 
-print(transform_matrix)
+# print(transform_matrix)
+
+pca_array = np.zeros((select_index, 1))
+for i in range(image_count):
+    pca_array = np.append(pca_array, (transform_matrix.T @ difference_array[:, i]).reshape(select_index, 1), axis=1)
+
+pca_array = np.delete(pca_array, 0, axis=1)
+
+print(pca_array)
 
 cv2.waitKey()
