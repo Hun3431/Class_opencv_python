@@ -27,7 +27,7 @@ num = input("-> ")
 if int(num) == 1:
     print("1. 사진에서 얼굴 찾기")
     print("- 파일 번호를 입력하시오.")
-    print("( 0 ~ 64 )")
+    print("( 0 ~ 59 )")
     image_num = int(input("-> "))
 
     if image_num < 0 | image_num > 64:
@@ -78,7 +78,7 @@ if int(num) == 1:
                 if image_num != 0:
                     image_num -= 1
             elif key == 3:
-                if image_num != 64:
+                if image_num != 59:
                     image_num += 1
             elif key == 27:
                 break
