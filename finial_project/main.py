@@ -62,6 +62,16 @@ for i in range(len(eigen_value_sort)):
         select_index = i + 1
         break;
 
-print(select_index)
+# print(select_index)
+
+transform_matrix = np.zeros((size, 1))
+
+for i in range(select_index):
+    mul = (difference_array @ eigen_vector_sort[:, i]).reshape(size, 1)
+    transform_matrix = np.append(transform_matrix, mul / np.linalg.norm(mul), axis=1)
+
+transform_matrix = np.delete(transform_matrix, 0, axis=1)
+
+print(transform_matrix)
 
 cv2.waitKey()
