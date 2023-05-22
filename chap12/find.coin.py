@@ -29,6 +29,8 @@ while True:
         text = (center[0] - radius * 1 // 10 - 15, center[1]+10)
         print(count, " - radius : ", radius)
         cv2.circle(image, center, radius, (0, 255, 0), 2)
+        cv2.putText(image, str(radius), text, cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 5)
+        cv2.putText(image, str(radius), text, cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
 
     cv2.putText(image, (f'./images/coin/{imageNum:02d}.jpg'), (5, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
     cv2.putText(image, (f'Coin : {count}'), (5, 70), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
