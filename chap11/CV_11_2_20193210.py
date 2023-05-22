@@ -55,7 +55,7 @@ while True:
     image, images = show(frame, state)   # 카메라에서 받은 영상에서 얼굴 인식
     state = False
     cv2.imshow('image', image)   # 얼굴을 찾은 이미지 파일을 출력
-    key = cv2.waitKey(30)
+    key = cv2.waitKey(13)
     if key == 27: break  # 키보드 누르면 종료, 30 frame/sec
     if key == 32:
         state = True
