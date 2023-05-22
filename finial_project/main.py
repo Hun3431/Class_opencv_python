@@ -1,9 +1,10 @@
 import numpy as np
 import cv2
-
+import copy
 image_count = 310
 width = 120
 height = 150
+size = width * height
 
 image_files = []
 
@@ -19,6 +20,18 @@ for i in range(len(image_files)):
 
 average = sum_image / image_count
 
-cv2.imshow("Average Image", average.astype(np.uint8))
+# cv2.imshow("Average Image", average.astype(np.uint8))
+
+difference_array = np.zeros((size, 1), dtype=np.uint8)
+
+for i in range(len(image_files)):
+    image = copy.deepcopy(image_files[i])
+    image = image - average
+    image = image.reshape(size, 1)
+    difference_array = np.append(difference_array, image, axis=1)
+
+difference_array = np.delete(difference_array, 0, axis=1)
+
+print(difference_array)
 
 cv2.waitKey()
