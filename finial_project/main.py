@@ -36,7 +36,11 @@ difference_array = np.delete(difference_array, 0, axis=1)
 
 covariance_array = np.cov(difference_array.T)
 
-print(covariance_array)
+# print(covariance_array)
 
+eigen_value, eigen_vector = np.linalg.eig(covariance_array)
+
+print(eigen_value)
+print(eigen_vector)
 
 cv2.waitKey()
