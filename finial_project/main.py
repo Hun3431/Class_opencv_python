@@ -32,6 +32,11 @@ for i in range(len(image_files)):
 
 difference_array = np.delete(difference_array, 0, axis=1)
 
-print(difference_array)
+# print(difference_array)
+
+covariance_array = np.cov(difference_array.T)
+
+print(covariance_array)
+
 
 cv2.waitKey()
