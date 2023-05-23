@@ -44,9 +44,19 @@ def Eigen_Sort(value, vector):
     return value_sort, vector_sort
 
 
+def Select_Vector(sort, rate):
+    sum = 0
+    sum_eigen_value = sort.sum() * rate
+    for i in range(len(sort)):
+        sum += sort[i]
+        if sum_eigen_value <= sum:
+            return i + 1
+
+
 image_count = 310
 width = 120
 height = 150
+rate = 0.95
 size = width * height
 
 image_files = []
@@ -92,19 +102,13 @@ print("고유값/고유벡터 정렬 완료")
 print(eigen_value_sort)
 print(eigen_vector_sort)
 
-sum = 0
-rate = 0.95
-select_index = 0
 
-sum_eigen_value = eigen_value_sort.sum() * rate
-for i in range(len(eigen_value_sort)):
-    sum += eigen_value_sort[i]
+# 고유벡터 선택
+print("고유벡터 선택 시작")
+select_index = Select_Vector(eigen_value_sort, rate)
+print("고유벡터 선택 완료")
+print(select_index)
 
-    if sum_eigen_value <= sum:
-        select_index = i + 1
-        break;
-
-# print(select_index)
 
 transform_matrix = np.zeros((size, 1))
 
