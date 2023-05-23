@@ -63,6 +63,14 @@ def Transform_Matrix_Reduce(difference_array, eigen_vector_sort, select_index, s
     return np.delete(transform_matrix, 0, axis=1)
 
 
+def Calculate_PCA(image_count, difference_array, select_index, transform_matrix):
+    pca_array = np.zeros((select_index, 1))
+    for i in range(image_count):
+        pca_array = np.append(pca_array, (transform_matrix.T @ difference_array[:, i]).reshape(select_index, 1), axis=1)
+
+    return np.delete(pca_array, 0, axis=1)
+
+
 image_count = 310
 width = 120
 height = 150
@@ -128,13 +136,12 @@ print(transform_matrix)
 print(transform_matrix.sum())
 
 
-pca_array = np.zeros((select_index, 1))
-for i in range(image_count):
-    pca_array = np.append(pca_array, (transform_matrix.T @ difference_array[:, i]).reshape(select_index, 1), axis=1)
+# PCA 배열 구하기
+print("주성분 데이터 투영 시작")
+pca_array = Calculate_PCA(image_count, difference_array, select_index, transform_matrix)
+print("주성분 데이터 투영 종료")
+print(pca_array)
 
-pca_array = np.delete(pca_array, 0, axis=1)
-
-# print(pca_array)
 
 test_image_count = 93
 test_files = []
