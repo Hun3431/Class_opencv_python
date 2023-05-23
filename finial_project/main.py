@@ -2,6 +2,18 @@ import numpy as np
 import cv2
 import copy
 
+
+def Average_Image(images):
+    width = images[0].shape[1]
+    height = images[0].shape[0]
+    sum = np.zeros((height, width), dtype=np.float32)
+    for i in range(len(images)):
+        # 평균 영상
+        sum += np.array(images[i], dtype=np.float32)
+
+    return sum / len(images)
+
+
 image_count = 310
 width = 120
 height = 150
@@ -16,12 +28,10 @@ for i in range(image_count):
 
 sum_image = np.zeros((height, width), dtype=np.float32)
 
-for i in range(len(image_files)):
-    sum_image += np.array(image_files[i], dtype=np.float32)
+# 평균 영상 구하기
+average = Average_Image(copy.deepcopy(image_files))
+cv2.imshow("Average Image", average.astype(np.uint8))
 
-average = sum_image / image_count
-
-# cv2.imshow("Average Image", average.astype(np.uint8))
 
 difference_array = np.zeros((size, 1), dtype=np.uint8)
 
