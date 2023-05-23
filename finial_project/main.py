@@ -151,6 +151,8 @@ def main():
     test_image_count = 93
     test_files = []
 
+    success = 0
+
     for i in range(test_image_count):
         image = cv2.imread(f"./face_img/test/test{i:03d}.jpg", cv2.IMREAD_GRAYSCALE)
         image = cv2.resize(image, (width, height))
@@ -187,7 +189,10 @@ def main():
         cv2.moveWindow(test_image_title, 200 + width, 100)
         cv2.imshow(test_image_title, np.array(test_files[test_image_number], dtype=np.uint8))
 
-        cv2.waitKey(100)
+        key = cv2.waitKey()
+        if key == 3: success += 1
+
+    print(f"{success / test_image_count * 100:.2f}%")
 
 main()
 
