@@ -53,6 +53,16 @@ def Select_Vector(sort, rate):
             return i + 1
 
 
+def Transform_Matrix_Reduce(difference_array, eigen_vector_sort, select_index, size):
+    transform_matrix = np.zeros((size, 1))
+
+    for i in range(select_index):
+        mul = (difference_array @ eigen_vector_sort[:, i]).reshape(size, 1)
+        transform_matrix = np.append(transform_matrix, mul / np.linalg.norm(mul), axis=1)
+
+    return np.delete(transform_matrix, 0, axis=1)
+
+
 image_count = 310
 width = 120
 height = 150
@@ -110,15 +120,13 @@ print("고유벡터 선택 완료")
 print(select_index)
 
 
-transform_matrix = np.zeros((size, 1))
+# 변환 행렬 축소
+print("변환 행렬 축소 시작")
+transform_matrix = Transform_Matrix_Reduce(difference_array, eigen_vector_sort, select_index, width * height)
+print("변환 행렬 축소 종료")
+print(transform_matrix)
+print(transform_matrix.sum())
 
-for i in range(select_index):
-    mul = (difference_array @ eigen_vector_sort[:, i]).reshape(size, 1)
-    transform_matrix = np.append(transform_matrix, mul / np.linalg.norm(mul), axis=1)
-
-transform_matrix = np.delete(transform_matrix, 0, axis=1)
-
-# print(transform_matrix)
 
 pca_array = np.zeros((select_index, 1))
 for i in range(image_count):
