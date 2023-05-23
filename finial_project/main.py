@@ -8,8 +8,20 @@ def Average_Image(images):
     height = images[0].shape[0]
     sum = np.zeros((height, width), dtype=np.float32)
     for i in range(len(images)):
+        if (i // 14) % 6 == 0 and i % 14 == 0 and i != 0:
+            cv2.waitKey(1)
+            cv2.destroyAllWindows()
         # 평균 영상
         sum += np.array(images[i], dtype=np.float32)
+
+        # 출력
+        title = f"train{i:03d}.jpg"
+        cv2.namedWindow(title)
+        cv2.moveWindow(title, (i % 14) * width, (((i // 14) % 6) * (height + 20)))
+        cv2.imshow(title, images[i].astype(np.uint8))
+
+    cv2.waitKey(1)
+    cv2.destroyAllWindows()
 
     return sum / len(images)
 
