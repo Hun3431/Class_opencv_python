@@ -26,6 +26,17 @@ def Average_Image(images):
     return sum / len(images)
 
 
+def Difference_Image(images, average):
+    size = average.shape[0] * average.shape[1]
+    array_image = np.zeros((size, 1), dtype=np.uint8)
+    for i in range(len(images)):
+        image = images[i]
+        image = image - average
+        image = image.reshape(size, 1)
+        array_image = np.append(array_image, image, axis=1)
+    return np.delete(array_image, 0, axis=1)
+
+
 image_count = 310
 width = 120
 height = 150
@@ -45,17 +56,13 @@ average = Average_Image(copy.deepcopy(image_files))
 cv2.imshow("Average Image", average.astype(np.uint8))
 
 
-difference_array = np.zeros((size, 1), dtype=np.uint8)
+# 차영상? 한줄영상
+print("차 영상 구하기 시작")
+difference_array = Difference_Image(copy.deepcopy(image_files), average)
+print("차 영상 구하기 완료")
+# array_image = np.array(array_image)
+print(difference_array)
 
-for i in range(len(image_files)):
-    image = copy.deepcopy(image_files[i])
-    image = image - average
-    image = image.reshape(size, 1)
-    difference_array = np.append(difference_array, image, axis=1)
-
-difference_array = np.delete(difference_array, 0, axis=1)
-
-# print(difference_array)
 
 covariance_array = np.cov(difference_array.T)
 
