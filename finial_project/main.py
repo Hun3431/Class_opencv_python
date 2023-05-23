@@ -37,6 +37,13 @@ def Difference_Image(images, average):
     return np.delete(array_image, 0, axis=1)
 
 
+def Eigen_Sort(value, vector):
+    index = value.argsort()[::-1]
+    value_sort = value[index]
+    vector_sort = vector[:, index]
+    return value_sort, vector_sort
+
+
 image_count = 310
 width = 120
 height = 150
@@ -78,12 +85,12 @@ print(eigen_value)
 print(eigen_vector)
 
 
-index = eigen_value.argsort()[:: -1]
-eigen_value_sort = eigen_value[index]
-eigen_vector_sort = eigen_vector[:, index]
-
-# print(eigen_value_sort)
-# print(eigen_vector_sort)
+# 고유값/고유벡터 정렬
+print("고유값/고유벡터 정렬 시작")
+eigen_value_sort, eigen_vector_sort = Eigen_Sort(eigen_value, eigen_vector)
+print("고유값/고유벡터 정렬 완료")
+print(eigen_value_sort)
+print(eigen_vector_sort)
 
 sum = 0
 rate = 0.95
