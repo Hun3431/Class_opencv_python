@@ -60,13 +60,15 @@ cv2.imshow("Average Image", average.astype(np.uint8))
 print("차 영상 구하기 시작")
 difference_array = Difference_Image(copy.deepcopy(image_files), average)
 print("차 영상 구하기 완료")
-# array_image = np.array(array_image)
 print(difference_array)
 
 
+# 공분산 행렬
+print("공분산 행렬 구하기 시작")
 covariance_array = np.cov(difference_array.T)
+print("공분산 행렬 구하기 완료")
+print(covariance_array)
 
-# print(covariance_array)
 
 eigen_value, eigen_vector = np.linalg.eig(covariance_array)
 
