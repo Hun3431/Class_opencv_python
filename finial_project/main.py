@@ -70,10 +70,13 @@ print("공분산 행렬 구하기 완료")
 print(covariance_array)
 
 
+# 고유값 고유벡터
+print("고유값, 고유벡터 구하기 시작")
 eigen_value, eigen_vector = np.linalg.eig(covariance_array)
+print("고유값, 고유벡터 구하기 완료")
+print(eigen_value)
+print(eigen_vector)
 
-# print(eigen_value)
-# print(eigen_vector)
 
 index = eigen_value.argsort()[:: -1]
 eigen_value_sort = eigen_value[index]
