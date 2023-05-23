@@ -94,7 +94,7 @@ for i in range(test_image_count):
 # print(test_files)
 
 for test_image_number in range(test_image_count):
-    image = test_files[test_image_number] = average
+    image = test_files[test_image_number] - average
     image = image.reshape(size, 1)
     image_value = transform_matrix.T @ image
 
@@ -113,4 +113,14 @@ for test_image_number in range(test_image_count):
 
     find_num = min_number
 
-cv2.waitKey()
+    find_image_title = f"Find Image.{find_num:03d}"
+    cv2.namedWindow(find_image_title)
+    cv2.moveWindow(find_image_title, 100, 100)
+    test_image_title = f"Test Image.{test_image_number:03d}"
+    cv2.namedWindow(test_image_title)
+    cv2.moveWindow(test_image_title, 200 + width, 100)
+
+    cv2.imshow(find_image_title, np.array(image_files[find_num], dtype=np.uint8))
+    cv2.imshow(test_image_title, np.array(test_files[test_image_number], dtype=np.uint8))
+
+    cv2.waitKey(100)
