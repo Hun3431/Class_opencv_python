@@ -1,6 +1,7 @@
 import numpy as np
 import cv2
 import copy
+
 image_count = 310
 width = 120
 height = 150
@@ -80,6 +81,16 @@ for i in range(image_count):
 
 pca_array = np.delete(pca_array, 0, axis=1)
 
-print(pca_array)
+# print(pca_array)
+
+test_image_count = 93
+test_files = []
+
+for i in range(test_image_count):
+    image = cv2.imread(f"./face_img/test/test{i:03d}.jpg", cv2.IMREAD_GRAYSCALE)
+    image = cv2.resize(image, (width, height))
+    test_files.append(np.array(image, np.float32))
+
+print(test_files)
 
 cv2.waitKey()
