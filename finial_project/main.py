@@ -91,6 +91,26 @@ for i in range(test_image_count):
     image = cv2.resize(image, (width, height))
     test_files.append(np.array(image, np.float32))
 
-print(test_files)
+# print(test_files)
+
+for test_image_number in range(test_image_count):
+    image = test_files[test_image_number] = average
+    image = image.reshape(size, 1)
+    image_value = transform_matrix.T @ image
+
+    min_array = 0
+    min_number = 0
+
+    for i in range(image_count):
+        arr = pca_array[:, i].reshape(select_index, 1)
+        sum = 0
+        for j in range(select_index):
+            sum += (image_value[j, 0] - arr[j, 0]) ** 2
+        sum **= 1 / 2
+        if i == 0 or min_array > sum:
+            min_array = sum
+            min_number = i
+
+    find_num = min_number
 
 cv2.waitKey()
